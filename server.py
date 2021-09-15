@@ -4,16 +4,11 @@ import os
 from classes.Method_GET import Method_GET
 from classes.Method_POST import Method_POST
 
-# dir
 app = Flask(__name__)
 _dir = os.path.dirname(os.path.abspath(__file__))
 app.template_folder = os.path.join(_dir, "templates")
 app.static_folder = os.path.join(_dir, "static")
 app.debug = True
-
-# Session
-Key = "test"
-app.secret_key = Key
 
 
 @app.route("/" ,methods = ["GET"])
