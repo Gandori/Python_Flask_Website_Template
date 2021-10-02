@@ -1,6 +1,6 @@
 from flask import Flask ,redirect ,url_for ,request
 import os
-
+from config import DevelopmentConfig
 from classes.Method_GET import Method_GET
 from classes.Method_POST import Method_POST
 
@@ -8,12 +8,11 @@ app = Flask(__name__)
 _dir = os.path.dirname(os.path.abspath(__file__))
 app.template_folder = os.path.join(_dir, "templates")
 app.static_folder = os.path.join(_dir, "static")
-app.debug = True
-
+app.config.from_object(DevelopmentConfig())
 
 @app.route("/" ,methods = ["GET"])
 def slash():
- 
+    print( app.config["SECRET_KEY"])
     return redirect(url_for("index"))
 
 
@@ -28,5 +27,5 @@ def index():
 
         return Method_GET().GET
 
-
-app.run(host="localhost" ,port="1000" ,threaded = True)
+if __name__ == "__main__":
+    app.run(port="5000" ,threaded = True)
