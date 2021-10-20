@@ -1,31 +1,31 @@
 from flask import Flask ,redirect ,url_for ,request
-import os
-from classes.config import DevelopmentConfig
-from classes.Method_GET import Method_GET
-from classes.Method_POST import Method_POST
 
-def app():
-    app = Flask(__name__)
-    dir = os.path.dirname(os.path.abspath(__file__))
-    app.template_folder = os.path.join(dir, "templates")
-    app.static_folder = os.path.join(dir, "static")
-    app.config.from_object(DevelopmentConfig())
-    return app
+from classes.method_post import method_post
+from classes.method_get import method_get
 
-def routes(app):
-    @app.route("/" ,methods = ["GET"])
-    def slash():
-        return redirect(url_for("index"))
+class app:
+    def __init__(self) -> None:
+        self = Flask(__name__)
 
+        @self.route("/<page>" ,methods = ["GET"])
+        def other(page):
+            return redirect(url_for("index"))
 
-    @app.route("/index.html" ,methods = ["GET" ,"POST"])
-    def index():
-
-        if request.method == "POST": return Method_POST().POST
+        @self.route("/" ,methods = ["GET"])
+        def slash():
             
-        if request.method == "GET": return Method_GET().GET
+            return redirect(url_for("index"))
+
+        @self.route("/index.html" ,methods = ["GET" ,"POST"])
+        def index():
+
+            if request.method == "POST": 
+                return method_post().post
+
+            if request.method == "GET":
+                return method_get().get
+
+        self.run(threaded = True ,debug=True)
 
 if __name__ == "__main__":
-    app = app()
-    routes(app)
-    app.run(threaded = True)
+    app()

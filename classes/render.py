@@ -1,12 +1,10 @@
 from flask import render_template
 
-class RenderPage:
+class render:
     def __init__(self) -> None:
 
-
-        def RenderPage():
+        def render_page():
             return render_template(self.page)
 
-
         self.page = "index.html"
-        self.RenderPage = RenderPage()
+        self.render = render_page()

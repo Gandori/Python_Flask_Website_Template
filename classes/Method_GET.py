@@ -1,11 +1,9 @@
-from classes.RenderPage import RenderPage
+from classes.render import render
 
-class Method_GET:
+class method_get:
     def __init__(self) -> None:
-
         
-        def GET():
-            return RenderPage().RenderPage
+        def get():
+            return render().render
 
-        
-        self.GET = GET()
+        self.get = get()

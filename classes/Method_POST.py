@@ -1,11 +1,9 @@
-from classes.RenderPage import RenderPage
+from classes.render import render
 
-class Method_POST:
+class method_post:
     def __init__(self) -> None:
-
         
-        def POST():
-            return RenderPage().RenderPage
+        def post():
+            return render().render
 
-        
-        self.POST = POST()
+        self.post = post()
