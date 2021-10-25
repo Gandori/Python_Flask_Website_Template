@@ -1,9 +1,9 @@
-from classes.render import render
+from flask import redirect ,url_for
 
 class method_post:
     def __init__(self) -> None:
         
         def post():
-            return render().render
-
+            pass
+        
         self.post = post()
