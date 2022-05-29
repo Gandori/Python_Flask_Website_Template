@@ -1,4 +1,8 @@
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask
+from flask import redirect
+from flask import url_for
+from flask import request
+from flask import render_template
 import os
 
 class app:
@@ -11,7 +15,7 @@ class app:
 
 		@self.errorhandler(404)
 		def page_not_found(e):
-			return redirect(url_for("index"))
+			return render_template("page_not_found.html")
 
 		@self.before_request
 		def before_request():
@@ -22,10 +26,6 @@ class app:
 			response.headers.add("Access-Control-Allow-Origin", "*")
 			response.headers.add("Cache-control", "no-cache, no-store, must-revalidate")
 			return response
-
-		@self.route("/<page>", methods = ["GET"])
-		def other(page):
-			return redirect(url_for("index"))
 
 		@self.route("/", methods = ["GET"])
 		def slash():
