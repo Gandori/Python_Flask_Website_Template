@@ -1,9 +1,8 @@
+import os
 from flask import Flask
 from flask import redirect
 from flask import url_for
-from flask import request
 from flask import render_template
-import os
 
 class app:
 	def __init__(self):
@@ -21,6 +20,10 @@ class app:
 		def before_request():
 			pass
 
+		@self.before_first_request
+		def before_first_request():
+			pass
+
 		@self.after_request
 		def after_request(response):
 			response.headers.add("Access-Control-Allow-Origin", "*")
@@ -35,7 +38,7 @@ class app:
 		def index():
 			return render_template("index.html")
 
-		self.run(host="localhost", port=1000, threaded=True)
+		self.run(host="0.0.0.0", port=5000, threaded=True)
 
 if __name__ == "__main__":
 	app()
